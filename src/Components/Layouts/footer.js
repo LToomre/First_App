@@ -2,12 +2,11 @@ import React from "react";
 import { Paper, Tabs } from "material-ui";
 import { Tab } from "material-ui";
 
-export default props => (
+export default ({ railroads }) => (
   <Paper>
     <Tabs value={0} indicatorColor="primary" textColor="primary" centered>
-      <Tab label="First" />
-      <Tab label="Second" />
-      <Tab label="Third" />
+      <Tab label="All" />
+      {railroads.map(group => <Tab label={group} />)}
     </Tabs>
   </Paper>
 );

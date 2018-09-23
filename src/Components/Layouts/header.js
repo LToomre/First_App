@@ -5,7 +5,7 @@ export default props => (
   <AppBar position="static">
     <Toolbar>
       <Typography variant="headline" color="inherit">
-        LToomre App
+        Locomotive App
       </Typography>
       <Button color="inherit">Login</Button>
     </Toolbar>
