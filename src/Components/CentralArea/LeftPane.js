@@ -18,6 +18,5 @@ export default ({ locomotives, styles }) => (
         </List>
       </Fragment>
     ))}
-    Left Pane
   </Paper>
 );

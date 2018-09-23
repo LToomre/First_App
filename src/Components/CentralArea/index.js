@@ -4,7 +4,13 @@ import LeftPane from "./LeftPane";
 import RightPane from "./RightPane";
 
 const styles = {
-  Paper: { padding: 20, marginTop: 10, marginBottom: 10 }
+  Paper: {
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 600,
+    overflowY: "auto"
+  }
 };
 
 export default ({ locomotives, railroads }) => (
