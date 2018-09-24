@@ -1,10 +1,28 @@
 export const railroads = [
-  "Southern Pacific",
-  "Union Pacific",
-  "Northern Pacific",
-  "Pennsylvania",
-  "Norfolk & Western",
-  "New York Central"
+  {
+    abbrev: "SP",
+    name: "Southern Pacific"
+  },
+  {
+    abbrev: "UP",
+    name: "Union Pacific"
+  },
+  {
+    abbrev: "NP",
+    name: "Northern Pacific"
+  },
+  {
+    abbrev: "Pennsy",
+    name: "Pennsylvania"
+  },
+  {
+    abbrev: "N&W",
+    name: "Norfolk & Western"
+  },
+  {
+    abbrev: "NY Cen",
+    name: "New York Central"
+  }
 ];
 
 export const locomotives = [
@@ -16,7 +34,7 @@ export const locomotives = [
     railroads: ["Union Pacific"]
   },
   {
-    id: "gs-4",
+    id: "gs4",
     title: "Golden State 4 class",
     description:
       "The Lima Locomotive Works GS-4 class locomotive is a coal-fired steam locomotive manufactured in May 1941, and operated until 1956.",

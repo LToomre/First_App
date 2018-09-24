@@ -13,10 +13,16 @@ const styles = {
   }
 };
 
-export default ({ locomotives, railroads }) => (
+export default ({ locomotive, locomotives, railroad, railroads, onSelect }) => (
   <Grid container>
     <Grid item sm>
-      <LeftPane locomotives={locomotives} styles={styles} />
+      <LeftPane
+        locomotives={locomotives}
+        railroad={railroad}
+        railroads={railroads}
+        onSelect={onSelect}
+        styles={styles}
+      />
     </Grid>
     <Grid item sm>
       <RightPane styles={styles} />

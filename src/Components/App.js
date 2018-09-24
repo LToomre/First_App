@@ -5,8 +5,20 @@ import { railroads, locomotives } from "../store.js";
 
 export default class extends Component {
   state = {
-    locomotives
+    locomotive: "",
+    locomotives,
+    railroad: "",
+    railroads
   };
+
+  initRailroads(railroads, locomotives) {
+    /**
+     * This function is used to set the initial state of the global
+     * railroads object. It is a combination of the initial railroads
+     * list and any railroads referenced in the locomotives object.
+     * It also is a unique list by name element.
+     */
+  }
 
   getLocomotivesByRailroads() {
     return Object.entries(
@@ -22,15 +34,49 @@ export default class extends Component {
     );
   }
 
+  handleRailroadSelected = railroad => {
+    var x = "";
+    this.setState(prevState => ({
+      railroad: prevState.railroads.find(function(ex) {
+        return ex.abbrev === railroad;
+      })
+    }));
+    console.log("handleRailroadSelected: railroad ", railroad);
+  };
+
+  handleLocomotiveSelected = locomotive => {
+    this.setState(prevState => ({
+      locomotive: prevState.locomotives.find(function(ex) {
+        return ex.id === locomotive;
+      }).id
+    }));
+    console.log("handleLocomotiveSelected: locomotive", locomotive);
+  };
+
   render() {
+    const locomotive = this.state.locomotive;
     const locomotives = this.getLocomotivesByRailroads();
+    const railroad = this.state.railroad;
+
+    console.log("selectors:", locomotive, railroad);
+
     return (
       <Fragment>
         <Header />
 
-        <CentralArea locomotives={locomotives} />
+        <CentralArea
+          locomotive={locomotive}
+          locomotives={locomotives}
+          railroad={railroad}
+          railroads={railroads}
+          onSelect={this.handleLocomotiveSelected}
+        />
 
-        <Footer railroads={railroads} />
+        <Footer
+          railroad={railroad}
+          railroads={railroads}
+          onselect={this.handleRailroadSelected}
+        />
       </Fragment>
     );
   }
