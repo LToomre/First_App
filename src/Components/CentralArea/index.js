@@ -13,19 +13,27 @@ const styles = {
   }
 };
 
-export default ({ locomotive, locomotives, railroad, railroads, onSelect }) => (
-  <Grid container>
-    <Grid item sm>
-      <LeftPane
-        locomotives={locomotives}
-        railroad={railroad}
-        railroads={railroads}
-        onSelect={onSelect}
-        styles={styles}
-      />
+export default ({ locomotive, locomotives, railroad, railroads, onSelect }) => {
+  // console.log("Central area:", locomotive, locomotives);
+  return (
+    <Grid container>
+      <Grid item sm>
+        <LeftPane
+          locomotive={locomotive}
+          locomotives={locomotives}
+          railroad={railroad}
+          railroads={railroads}
+          onSelect={onSelect}
+          styles={styles}
+        />
+      </Grid>
+      <Grid item sm>
+        <RightPane
+          locomotive={locomotive}
+          locomotives={locomotives}
+          styles={styles}
+        />
+      </Grid>
     </Grid>
-    <Grid item sm>
-      <RightPane styles={styles} />
-    </Grid>
-  </Grid>
-);
+  );
+};

@@ -28,7 +28,7 @@ export const railroads = [
 export const locomotives = [
   {
     id: "bigboy",
-    title: "BigBoy 4-8-8-4",
+    title: "Big Boy 4-8-8-4",
     description:
       "The American Locomotive Company 4000-class 4-8-8-4 locomotive, popularly named Big Boy, is an articulated, coal or oil-fired, steam locomotive manufactured between 1941 and 1944, and operated until 1959.",
     railroads: ["Union Pacific"]

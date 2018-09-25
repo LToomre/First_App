@@ -25,7 +25,7 @@ export default ({ railroads, railroad, onselect }) => {
         centered
       >
         <Tab label="All" />
-        {labels.map(group => <Tab label={group} />)}
+        {labels.map(group => <Tab key={group} label={group} />)}
       </Tabs>
     </Paper>
   );

@@ -20,20 +20,6 @@ export default class extends Component {
      */
   }
 
-  getLocomotivesByRailroads() {
-    return Object.entries(
-      this.state.locomotives.reduce((locomotives, locomotive) => {
-        const { railroads } = locomotive;
-
-        locomotives[railroads] = locomotives[railroads]
-          ? [...locomotives[railroads], locomotive]
-          : [locomotive];
-
-        return locomotives;
-      }, {})
-    );
-  }
-
   handleRailroadSelected = railroad => {
     let rail;
     if (railroad === "") {
@@ -62,7 +48,6 @@ export default class extends Component {
 
   render() {
     const locomotive = this.state.locomotive;
-    const locomotives = this.getLocomotivesByRailroads();
     const railroad = this.state.railroad;
 
     console.log("selectors:", locomotive, railroad);

@@ -13,6 +13,20 @@ function matchRailroad(railroads, name, abbrev) {
   return ret;
 }
 
+function getLocomotivesByRailroads(locomotives) {
+  return Object.entries(
+    locomotives.reduce((locomotives, locomotive) => {
+      const { railroads } = locomotive;
+
+      locomotives[railroads] = locomotives[railroads]
+        ? [...locomotives[railroads], locomotive]
+        : [locomotive];
+
+      return locomotives;
+    }, {})
+  );
+}
+
 export default ({
   locomotive,
   locomotives,
@@ -23,15 +37,18 @@ export default ({
 }) => {
   // console.log(railroads, railroad);
 
+  var engines = getLocomotivesByRailroads(locomotives);
+  console.log("left pane:", locomotives, engines);
+
   return (
     <Paper styles={styles.Paper}>
-      {locomotives.sort().map(([group, locomotives]) => {
+      {engines.sort().map(([group, locomotives]) => {
         // {railroads.sort().map(([group, locomotives]) => {
         const mRailroad = matchRailroad(railroads, group, railroad);
 
         if (!railroad || mRailroad) {
           return (
-            <Fragment>
+            <Fragment key={group}>
               <Typography
                 variant="headline"
                 style={{ textTransform: "capitalize" }}
@@ -40,11 +57,8 @@ export default ({
               </Typography>
               <List component="ul">
                 {locomotives.map(({ id, title }) => (
-                  <ListItem button>
-                    <ListItemText
-                      primary={title}
-                      onClick={() => onSelect(id)}
-                    />
+                  <ListItem button key={id} onClick={() => onSelect(id)}>
+                    <ListItemText primary={title} />
                   </ListItem>
                 ))}
               </List>
