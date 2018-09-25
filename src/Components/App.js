@@ -35,12 +35,19 @@ export default class extends Component {
   }
 
   handleRailroadSelected = railroad => {
-    var x = "";
-    this.setState(prevState => ({
-      railroad: prevState.railroads.find(function(ex) {
-        return ex.abbrev === railroad;
-      })
-    }));
+    let rail;
+    if (railroad === "") {
+      // Handle the "ALL" case separately from other abbreviations.
+      this.setState(prevState => ({
+        railroad: ""
+      }));
+    } else {
+      this.setState(prevState => ({
+        railroad: prevState.railroads.find(function(ex) {
+          return ex.abbrev === railroad;
+        }).abbrev
+      }));
+    }
     console.log("handleRailroadSelected: railroad ", railroad);
   };
 
