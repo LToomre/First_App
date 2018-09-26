@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid } from "material-ui";
+import { withStyles } from "@material-ui/core/styles";
 import LeftPane from "./LeftPane";
 import RightPane from "./RightPane";
 
@@ -13,27 +14,39 @@ const styles = {
   }
 };
 
-export default ({ locomotive, locomotives, railroad, railroads, onSelect }) => {
-  // console.log("Central area:", locomotive, locomotives);
-  return (
-    <Grid container>
-      <Grid item sm>
-        <LeftPane
-          locomotive={locomotive}
-          locomotives={locomotives}
-          railroad={railroad}
-          railroads={railroads}
-          onSelect={onSelect}
-          styles={styles}
-        />
+export default withStyles(styles)(
+  ({
+    classes,
+    editMode,
+    locomotive,
+    locomotives,
+    onDelete,
+    onEdit,
+    onSelect,
+    railroad,
+    railroads
+  }) => {
+    // console.log("Central area:", locomotive, locomotives);
+    return (
+      <Grid container>
+        <Grid item sm>
+          <LeftPane
+            locomotive={locomotive}
+            locomotives={locomotives}
+            railroad={railroad}
+            railroads={railroads}
+            onSelect={onSelect}
+            styles={styles}
+          />
+        </Grid>
+        <Grid item sm>
+          <RightPane
+            locomotive={locomotive}
+            locomotives={locomotives}
+            styles={styles}
+          />
+        </Grid>
       </Grid>
-      <Grid item sm>
-        <RightPane
-          locomotive={locomotive}
-          locomotives={locomotives}
-          styles={styles}
-        />
-      </Grid>
-    </Grid>
-  );
-};
+    );
+  }
+);

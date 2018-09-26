@@ -1,8 +1,8 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button } from "material-ui";
-import LocomotiveResponsiveDialog from "../Dialogs/LocomotiveResponsiveDialog";
+import LocomotiveDialog from "../Dialogs/LocomotiveDialog";
 
-export default ({ locomotive, locomotives, onLocomotiveCreate }) => {
+export default ({ locomotive, locomotives, railroads, onLocomotiveCreate }) => {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -10,10 +10,11 @@ export default ({ locomotive, locomotives, onLocomotiveCreate }) => {
           Steam Locomotives
         </Typography>
 
-        <LocomotiveResponsiveDialog
+        <LocomotiveDialog
           locomotive={locomotive}
           locomotives={locomotives}
           onLocomotiveCreate={onLocomotiveCreate}
+          railroads={railroads}
         />
       </Toolbar>
     </AppBar>

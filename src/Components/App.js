@@ -19,9 +19,9 @@ import { railroads, locomotives } from "../store.js";
 export default class extends Component {
   state = {
     locomotive: "",
-    locomotives: {},
+    locomotives,
     railroad: "",
-    railroads: {}
+    railroads
   };
 
   handleRailroadSelect = railroad => {
@@ -120,6 +120,7 @@ export default class extends Component {
           locomotive={locomotive}
           locomotives={locomotives}
           onLocomotiveCreate={this.handleLocomotiveCreate}
+          railroads={railroads}
         />
 
         <CentralArea

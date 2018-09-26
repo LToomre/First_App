@@ -19,6 +19,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import withMobileDialog from "@material-ui/core/withMobileDialog";
 import { withStyles } from "@material-ui/core/styles";
 
+import LocomotiveForm from "./LocomotiveForm";
+
 /**
  * React dialog component for a locomotive entity.
  *
@@ -36,7 +38,7 @@ const styles = theme => ({
   }
 });
 
-class LocomotiveResponsiveDialog extends Component {
+class LocomotiveDialog extends Component {
   state = {
     open: false,
     locomotive: {
@@ -89,19 +91,20 @@ class LocomotiveResponsiveDialog extends Component {
     });
   };
 
+  handleFormSubmit = () => {};
+
   render() {
     const { fullScreen } = this.props;
     const defaultAction = "Create";
-    const {
-        open,
-        locomotive: { title, description, railroads }
-      } = this.state,
-      { classes, locomotives: categories } = this.props;
-    console.log({
-      fullScreen,
-      title,
-      description,
-      categories
+    const { open } = this.state,
+      { classes, locomotive, locomotives, railroad, railroads } = this.props;
+    console.log("loco dialog:", {
+      classes,
+      locomotive,
+      locomotives,
+      railroad,
+      railroads,
+      fullScreen
     });
 
     return (
@@ -122,25 +125,12 @@ class LocomotiveResponsiveDialog extends Component {
             <DialogContentText>
               Please fill in the form below.
             </DialogContentText>
-            <form>
-              <TextField
-                label="Title"
-                value={title}
-                onChange={this.handleChange("title")}
-                margin="normal"
-                className={classes.FormControl}
-              />
-              <br />
-              <TextField
-                multiline
-                rows="4"
-                label="Description"
-                value={description}
-                onChange={this.handleChange("description")}
-                margin="normal"
-                className={classes.FormControl}
-              />
-            </form>
+            <LocomotiveForm
+              locomotive={locomotive}
+              locomotives={locomotives}
+              railroads={railroads}
+              onSubmit={this.handleFormSubmit}
+            />
           </DialogContent>
           <DialogActions>
             <Button
@@ -200,10 +190,8 @@ class LocomotiveResponsiveDialog extends Component {
   }
 }
 
-LocomotiveResponsiveDialog.propTypes = {
+LocomotiveDialog.propTypes = {
   fullScreen: PropTypes.bool.isRequired
 };
 
-export default withMobileDialog()(
-  withStyles(styles)(LocomotiveResponsiveDialog)
-);
+export default withMobileDialog()(withStyles(styles)(LocomotiveDialog));

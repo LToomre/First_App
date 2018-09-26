@@ -25,8 +25,20 @@ function getLocomotivesByRailroads(locomotives, railroads) {
       return locomotives;
     }, {})
   );
-  console.log("getLocomotives", val);
-  return val;
+  const val2 = railroads.map(ex => {
+    const railroad = ex.name;
+    const engines = locomotives.filter(ex => {
+      const lookup = ex.railroads.indexOf(railroad);
+      const found = lookup > -1 ? true : false;
+      // if (lookup > -1) console.log('railway lookup:', railroad, ex.railroads, found)
+      return found;
+    }, {});
+    const element = [railroad, engines];
+    // console.log('result element', element)
+    return element;
+  });
+  // console.log("getLocomotives", val, val2);
+  return val2;
 }
 
 export default ({
@@ -39,7 +51,7 @@ export default ({
 }) => {
   // console.log(railroads, railroad);
 
-  var engines = getLocomotivesByRailroads(locomotives);
+  var engines = getLocomotivesByRailroads(locomotives, railroads);
   console.log("left pane:", locomotives, engines);
 
   return (
