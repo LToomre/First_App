@@ -13,8 +13,8 @@ function matchRailroad(railroads, name, abbrev) {
   return ret;
 }
 
-function getLocomotivesByRailroads(locomotives) {
-  return Object.entries(
+function getLocomotivesByRailroads(locomotives, railroads) {
+  const val = Object.entries(
     locomotives.reduce((locomotives, locomotive) => {
       const { railroads } = locomotive;
 
@@ -25,6 +25,8 @@ function getLocomotivesByRailroads(locomotives) {
       return locomotives;
     }, {})
   );
+  console.log("getLocomotives", val);
+  return val;
 }
 
 export default ({

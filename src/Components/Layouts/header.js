@@ -1,14 +1,20 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button } from "material-ui";
+import LocomotiveResponsiveDialog from "../Dialogs/LocomotiveResponsiveDialog";
 
-export default props => {
+export default ({ locomotive, locomotives, onLocomotiveCreate }) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="headline" color="inherit">
-          Locomotive
+        <Typography variant="headline" color="inherit" style={{ flex: 1 }}>
+          Steam Locomotives
         </Typography>
-        <Button color="inherit">Login</Button>
+
+        <LocomotiveResponsiveDialog
+          locomotive={locomotive}
+          locomotives={locomotives}
+          onLocomotiveCreate={onLocomotiveCreate}
+        />
       </Toolbar>
     </AppBar>
   );

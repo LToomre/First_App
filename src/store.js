@@ -16,10 +16,6 @@ export const railroads = [
     name: "Pennsylvania"
   },
   {
-    abbrev: "N&W",
-    name: "Norfolk & Western"
-  },
-  {
     abbrev: "NY Cen",
     name: "New York Central"
   }
