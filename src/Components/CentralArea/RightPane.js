@@ -20,7 +20,7 @@ export default ({ locomotive, locomotives, styles }) => {
       title = obj.title;
       desc = obj.description;
     }
-    console.log(obj, title, desc);
+    // console.log(obj, title, desc);
   }
 
   return (

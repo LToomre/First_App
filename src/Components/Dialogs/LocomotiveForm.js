@@ -8,17 +8,11 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 
+import { withStyles } from "@material-ui/core/styles";
+
 let styles;
 
-export default class extends Component {
-  static propTypes = {
-    handleChange: PropTypes.func,
-    handleChangeSelect: PropTypes.func,
-    handleSubmit: PropTypes.func
-  };
-
-  static defaultProps = {};
-
+class LocomotiveForm extends React.Component {
   state = {
     title: "",
     description: "",
@@ -105,7 +99,7 @@ export default class extends Component {
         <br />
         <Button
           color="primary"
-          variant="raised"
+          variant="contained"
           onClick={this.handleSubmit}
           disabled={!title || !locomotives}
         >
@@ -115,3 +109,13 @@ export default class extends Component {
     );
   }
 }
+
+styles = theme => ({});
+
+LocomotiveForm.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+LocomotiveForm.defaultProps = {};
+
+export default withStyles(styles)(LocomotiveForm);

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
@@ -34,7 +35,7 @@ import LocomotiveForm from "./LocomotiveForm";
 
 let styles;
 
-class LocomotiveDialog extends Component {
+class LocomotiveDialog extends React.Component {
   static propTypes = {
     handleChange: PropTypes.func,
     handleClickOpen: PropTypes.func,
@@ -151,7 +152,7 @@ class LocomotiveDialog extends Component {
               aria-label={defaultAction}
               onClick={this.handleClose}
               color="primary"
-              variant="raised"
+              variant="contained"
             >
               {defaultAction}
             </Button>
@@ -167,5 +168,15 @@ styles = theme => ({
     width: 300
   }
 });
+
+LocomotiveDialog.propTypes = {
+  classes: PropTypes.object.isRequired,
+
+  onLocomotiveCreate: PropTypes.func.isRequired,
+
+  fullScreen: PropTypes.bool.isRequired
+};
+
+LocomotiveDialog.defaultProps = {};
 
 export default withMobileDialog()(withStyles(styles)(LocomotiveDialog));

@@ -1,23 +1,23 @@
 import React, { Component, Fragment } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle
-} from "@material-ui/core/Dialog";
 
-export default class extends Component {
+let styles;
+
+class RailroadDialog extends Component {
   state = {};
 
   render() {
-    return <Fragment key={"create-locomotive"} />;
+    return <Fragment key={"create-railroad"} />;
   }
 }
 
-Types.propTypes = {
-  classes: PropTypes.object.isRequired,
+styles = theme => ({});
+
+RailroadDialog.propTypes = {
+  classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Types);
+RailroadDialog.defaultProps = {};
+
+export default withStyles(styles)(RailroadDialog);
