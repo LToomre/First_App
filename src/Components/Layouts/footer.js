@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Paper, Tabs } from "material-ui";
-import { Tab } from "material-ui";
+import { Paper, Tabs } from "@material-ui/core";
+import { Tab } from "@material-ui/core";
 
 export default ({ railroads, railroad, onselect }) => {
   const index = railroad ? 0 : 0;

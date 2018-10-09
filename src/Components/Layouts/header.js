@@ -1,12 +1,12 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button } from "material-ui";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 import LocomotiveDialog from "../Dialogs/LocomotiveDialog";
 
 export default ({ locomotive, locomotives, railroads, onLocomotiveCreate }) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="headline" color="inherit" style={{ flex: 1 }}>
+        <Typography variant="h4" color="inherit" style={{ flex: 1 }}>
           Steam Locomotives
         </Typography>
 

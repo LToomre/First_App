@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
@@ -7,8 +8,22 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 
+let styles;
+
 export default class extends Component {
-  state = this.getInitState();
+  static propTypes = {
+    handleChange: PropTypes.func,
+    handleChangeSelect: PropTypes.func,
+    handleSubmit: PropTypes.func
+  };
+
+  static defaultProps = {};
+
+  state = {
+    title: "",
+    description: "",
+    railroads: ""
+  };
 
   getInitState() {
     const { locomotive, locomotives, railroads } = this.props;
@@ -22,19 +37,21 @@ export default class extends Component {
         };
   }
 
-  handleChangeSelect(event) {
-    if (event) console.log("handleChange:", event);
+  handleChangeSelect = event => {
+    if (event !== undefined) console.log("handleChangeSelect:", event);
 
-    //    this.setState({
-    //      [name]: value
-    //    }
-    //    console.log('handleChange:', name, value);
-  }
+    // this.setState({
+    //   [event.target.name]: event.target.value
+    // });
+    console.log("handleChangeSelect: x");
+  };
 
-  handleChange = name => ({ target: { value } }) =>
+  handleChange = name => ({ target: { value } }) => {
+    console.log("handleChange:", name, value);
     this.setState({
       [name]: value
     });
+  };
 
   handleSubmit = () => {
     // TODO: validate
@@ -47,7 +64,7 @@ export default class extends Component {
 
   render() {
     const { title, description, railroads } = this.state,
-      { locomotive, locomotives, railroads: rr } = this.props;
+      { classes, locomotive, locomotives, railroads: rr } = this.props;
 
     const names = rr
       .map(ex => {
@@ -67,7 +84,7 @@ export default class extends Component {
         <br />
         <FormControl fullWidth>
           <InputLabel htmlFor="railroads">Railroads</InputLabel>
-          <Select value={names} onChange={this.handleChange("railroads")}>
+          <Select value={names} onChange={this.handleChangeSelect("railroads")}>
             {names.map(name => (
               <MenuItem key={name} value={name}>
                 {name}

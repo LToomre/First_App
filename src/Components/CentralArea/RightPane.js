@@ -1,5 +1,8 @@
 import React from "react";
-import { Paper, Typography } from "material-ui";
+import PropTypes from "prop-types";
+
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 export default ({ locomotive, locomotives, styles }) => {
   console.log("right pane:", locomotive, locomotives);
@@ -22,8 +25,10 @@ export default ({ locomotive, locomotives, styles }) => {
 
   return (
     <Paper key={locomotive} style={styles.Paper}>
-      <Typography variant="display1">{title}</Typography>
-      <Typography variant="subheading" style={{ marginTop: 20 }}>
+      <Typography component="h2" variant="h6" gutterBottom>
+        {title}
+      </Typography>
+      <Typography style={{ marginTop: 20 }} gutterBottom>
         {desc}
       </Typography>
     </Paper>

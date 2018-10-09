@@ -1,6 +1,11 @@
 import React, { Fragment } from "react";
-import { Paper, Typography, List } from "material-ui";
-import { ListItem, ListItemText } from "material-ui/List";
+import PropTypes from "prop-types";
+
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
 
 function matchRailroad(railroads, name, abbrev) {
   let ret = false;
@@ -63,10 +68,7 @@ export default ({
         if (!railroad || mRailroad) {
           return (
             <Fragment key={group}>
-              <Typography
-                variant="headline"
-                style={{ textTransform: "capitalize" }}
-              >
+              <Typography variant="h6" style={{ textTransform: "capitalize" }}>
                 {group}
               </Typography>
               <List component="ul">

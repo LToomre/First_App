@@ -32,13 +32,20 @@ import LocomotiveForm from "./LocomotiveForm";
  * make it responsive and accessible as much as possible.
  */
 
-const styles = theme => ({
-  FormControl: {
-    width: 300
-  }
-});
+let styles;
 
 class LocomotiveDialog extends Component {
+  static propTypes = {
+    handleChange: PropTypes.func,
+    handleClickOpen: PropTypes.func,
+    handleClose: PropTypes.func,
+    handleFormSubmit: PropTypes.func,
+
+    fullScreen: PropTypes.bool.isRequired
+  };
+
+  static defaultProps = {};
+
   state = {
     open: false,
     locomotive: {
@@ -153,45 +160,12 @@ class LocomotiveDialog extends Component {
       </Fragment>
     );
   }
-
-  extra() {
-    return (
-      <form>
-        <TextField
-          label="Title"
-          value={title}
-          onChange={this.handleChange("title")}
-          margin="normal"
-          className={classes.FormControl}
-        />
-        <br />
-        <FormControl className={classes.FormControl}>
-          <InputLabel htmlFor="muscles">Muscles</InputLabel>
-          <Select value={muscles} onChange={this.handleChange("muscles")}>
-            {categories.map(category => (
-              <MenuItem key={category} value={category}>
-                {category}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <br />
-        <TextField
-          multiline
-          rows="4"
-          label="Description"
-          value={description}
-          onChange={this.handleChange("description")}
-          margin="normal"
-          className={classes.FormControl}
-        />
-      </form>
-    );
-  }
 }
 
-LocomotiveDialog.propTypes = {
-  fullScreen: PropTypes.bool.isRequired
-};
+styles = theme => ({
+  FormControl: {
+    width: 300
+  }
+});
 
 export default withMobileDialog()(withStyles(styles)(LocomotiveDialog));

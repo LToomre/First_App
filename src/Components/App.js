@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+
 import CentralArea from "./CentralArea";
 import { Header, Footer } from "./Layouts";
 import { railroads, locomotives } from "../store.js";
@@ -16,7 +18,13 @@ import { railroads, locomotives } from "../store.js";
  * - Add railroads select element to locomotive dialog
  */
 
-export default class extends Component {
+let styles;
+
+export default class App extends React.Component {
+  static propTypes = {};
+
+  static defaultProps = {};
+
   state = {
     locomotive: "",
     locomotives,
@@ -24,8 +32,25 @@ export default class extends Component {
     railroads
   };
 
+  componentDidMount() {
+    this.calculateState(this.props, this.state, state => this.setState(state));
+  }
+
+  componentDidUpdate() {
+    this.calculateState(this.props, this.state, state => this.setState(state));
+  }
+
+  calculateState = (prevProps, prevState, setState) => {
+    // Remember that this came from Drupal JS Admin originally
+    // /src/components/05_pages/NodeForm/index.js
+    const state = {
+      ...prevState
+    };
+    return;
+    // setState(state);
+  };
+
   handleRailroadSelect = railroad => {
-    let rail;
     if (railroad === "") {
       // Handle the "ALL" case separately from other abbreviations.
       this.setState(prevState => ({
