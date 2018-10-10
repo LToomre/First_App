@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
 
-import CentralArea from "./CentralArea";
-import { Header, Footer } from "./Layouts";
+import Header from "./Layouts/HeaderPane";
+import Footer from "./Layouts/FooterPane";
+import CentralPane from "./Layouts/CentralPane";
 import { railroads, locomotives } from "../store.js";
 
 /**
@@ -13,18 +15,18 @@ import { railroads, locomotives } from "../store.js";
  * and .filter() functions on array and objects.
  *
  * Notes on known issues to address:
- * - Add a railroad referenced in locomotives if missing
- * - Clean up the name display for appeneded railroads issue.
+ * - Move *Pane files into /Layouts folder.
+ * - Transform anonymous elements into named Components with styles.
+ * - Rename footer.js to FooterPane.js.
+ * - Rename header.js to HeaderPane.js.
+ * - Tie the RailroadDialog into the FooterPane somehow.
+ * - Clean up the name display for appended railroads issue.
  * - Add railroads select element to locomotive dialog
  */
 
 let styles;
 
-export default class App extends React.Component {
-  static propTypes = {};
-
-  static defaultProps = {};
-
+class App extends React.Component {
   state = {
     locomotive: "",
     locomotives,
@@ -148,7 +150,7 @@ export default class App extends React.Component {
           railroads={railroads}
         />
 
-        <CentralArea
+        <CentralPane
           locomotive={locomotive}
           locomotives={locomotives}
           railroad={railroad}
@@ -165,3 +167,11 @@ export default class App extends React.Component {
     );
   }
 }
+
+styles = theme => ({});
+
+App.propTypes = {};
+
+App.defaultProps = {};
+
+export default withStyles(styles)(App);

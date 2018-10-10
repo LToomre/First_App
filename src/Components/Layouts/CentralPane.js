@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+
 import Grid from "@material-ui/core/Grid";
+
+import HeaderPane from "./HeaderPane";
+import FooterPane from "./FooterPane";
 import LeftPane from "./LeftPane";
 import RightPane from "./RightPane";
 
@@ -15,18 +19,20 @@ const styles = {
   }
 };
 
-export default withStyles(styles)(
-  ({
-    classes,
-    editMode,
-    locomotive,
-    locomotives,
-    onDelete,
-    onEdit,
-    onSelect,
-    railroad,
-    railroads
-  }) => {
+class CentralPane extends React.Component {
+  render() {
+    const {
+      classes,
+      editMode,
+      locomotive,
+      locomotives,
+      onDelete,
+      onEdit,
+      onSelect,
+      railroad,
+      railroads
+    } = this.props;
+
     // console.log("Central area:", locomotive, locomotives);
     return (
       <Grid container>
@@ -50,4 +56,6 @@ export default withStyles(styles)(
       </Grid>
     );
   }
-);
+}
+
+export default withStyles(styles)(CentralPane);
