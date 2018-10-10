@@ -32,7 +32,7 @@ class LocomotiveForm extends React.Component {
   }
 
   handleChangeSelect = event => {
-    if (event !== undefined) console.log("handleChangeSelect:", event);
+    // if (event !== undefined) console.log("handleChangeSelect:", event);
 
     // this.setState({
     //   [event.target.name]: event.target.value
@@ -61,6 +61,9 @@ class LocomotiveForm extends React.Component {
       { classes, locomotive, locomotives, railroads: rr } = this.props;
 
     // console.log('LocomotiveForm:', classes)
+    if (locomotive) {
+      console.log("Dialog fill-in:", locomotive, locomotives);
+    }
 
     const names = rr
       .map(ex => {

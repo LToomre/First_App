@@ -93,6 +93,7 @@ class LocomotiveDialog extends React.Component {
   render() {
     const { fullScreen } = this.props;
     const defaultAction = "Create";
+    const disableTypography = true;
     const { open } = this.state,
       { classes, locomotive, locomotives, railroad, railroads } = this.props;
     console.log("loco dialog:", {
@@ -115,11 +116,11 @@ class LocomotiveDialog extends React.Component {
           aria-label="Responsive "
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">
-            Create New locomotive
+          <DialogTitle disableTypography id="form-dialog-title">
+            <Typography variant="h6">Create New locomotive</Typography>
           </DialogTitle>
           <DialogContent>
-            <DialogContentText>
+            <DialogContentText variant="subtitle1">
               Please fill in the form below.
             </DialogContentText>
             <LocomotiveForm
@@ -154,7 +155,7 @@ class LocomotiveDialog extends React.Component {
 
 styles = theme => ({
   FormControl: {
-    width: 400
+    width: 500
   }
 });
 
