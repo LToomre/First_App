@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
 import Header from "./Layouts/HeaderPane";
-import Footer from "./Layouts/FooterPane";
 import CentralPane from "./Layouts/CentralPane";
+import Footer from "./Layouts/FooterPane";
 import { railroads, locomotives } from "../store.js";
 
 /**
@@ -15,10 +15,6 @@ import { railroads, locomotives } from "../store.js";
  * and .filter() functions on array and objects.
  *
  * Notes on known issues to address:
- * - Move *Pane files into /Layouts folder.
- * - Transform anonymous elements into named Components with styles.
- * - Rename footer.js to FooterPane.js.
- * - Rename header.js to HeaderPane.js.
  * - Tie the RailroadDialog into the FooterPane somehow.
  * - Clean up the name display for appended railroads issue.
  * - Add railroads select element to locomotive dialog

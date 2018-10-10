@@ -36,17 +36,6 @@ import LocomotiveForm from "./LocomotiveForm";
 let styles;
 
 class LocomotiveDialog extends React.Component {
-  static propTypes = {
-    handleChange: PropTypes.func,
-    handleClickOpen: PropTypes.func,
-    handleClose: PropTypes.func,
-    handleFormSubmit: PropTypes.func,
-
-    fullScreen: PropTypes.bool.isRequired
-  };
-
-  static defaultProps = {};
-
   state = {
     open: false,
     locomotive: {

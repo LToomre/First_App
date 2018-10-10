@@ -3,21 +3,12 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 
 import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
-import HeaderPane from "./HeaderPane";
-import FooterPane from "./FooterPane";
 import LeftPane from "./LeftPane";
 import RightPane from "./RightPane";
 
-const styles = {
-  Paper: {
-    padding: 20,
-    marginTop: 10,
-    marginBottom: 10,
-    height: 600,
-    overflowY: "auto"
-  }
-};
+let styles;
 
 class CentralPane extends React.Component {
   render() {
@@ -33,6 +24,7 @@ class CentralPane extends React.Component {
       railroads
     } = this.props;
 
+    console.log("classes:", classes);
     // console.log("Central area:", locomotive, locomotives);
     return (
       <Grid container>
@@ -57,5 +49,21 @@ class CentralPane extends React.Component {
     );
   }
 }
+
+styles = theme => ({
+  Paper: {
+    padding: 20,
+    marginTop: 10,
+    marginBottom: 10,
+    height: 600,
+    overflowY: "auto"
+  }
+});
+
+CentralPane.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+CentralPane.defaultProps = {};
 
 export default withStyles(styles)(CentralPane);
