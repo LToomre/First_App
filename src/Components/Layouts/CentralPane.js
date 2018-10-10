@@ -24,7 +24,7 @@ class CentralPane extends React.Component {
       railroads
     } = this.props;
 
-    console.log("classes:", classes);
+    // console.log("classes:", classes);
     // console.log("Central area:", locomotive, locomotives);
     return (
       <Grid container>

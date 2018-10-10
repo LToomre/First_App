@@ -60,6 +60,8 @@ class LocomotiveForm extends React.Component {
     const { title, description, railroads } = this.state,
       { classes, locomotive, locomotives, railroads: rr } = this.props;
 
+    // console.log('LocomotiveForm:', classes)
+
     const names = rr
       .map(ex => {
         return ex.name;
@@ -73,7 +75,7 @@ class LocomotiveForm extends React.Component {
           value={title}
           onChange={this.handleChange("title")}
           margin="normal"
-          fullWidth
+          className={classes.FormControl}
         />
         <br />
         <FormControl fullWidth>
@@ -110,7 +112,11 @@ class LocomotiveForm extends React.Component {
   }
 }
 
-styles = theme => ({});
+styles = theme => ({
+  FormControl: {
+    width: 250
+  }
+});
 
 LocomotiveForm.propTypes = {
   classes: PropTypes.object.isRequired

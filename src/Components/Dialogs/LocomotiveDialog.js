@@ -154,7 +154,7 @@ class LocomotiveDialog extends React.Component {
 
 styles = theme => ({
   FormControl: {
-    width: 300
+    width: 400
   }
 });
 

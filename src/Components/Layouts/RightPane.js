@@ -10,7 +10,7 @@ let styles;
 class RightPane extends React.Component {
   render() {
     const { classes, locomotive, locomotives, styles } = this.props;
-    console.log("right pane:", locomotive, locomotives);
+    // console.log("right pane:", locomotive, locomotives);
 
     var title = "",
       desc = "";
@@ -30,10 +30,10 @@ class RightPane extends React.Component {
 
     return (
       <Paper key={locomotive} style={styles.Paper}>
-        <Typography component="h2" variant="h6" gutterBottom>
+        <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
-        <Typography style={{ marginTop: 20 }} gutterBottom>
+        <Typography variant="subtitle1" style={{ marginTop: 20 }} gutterBottom>
           {desc}
         </Typography>
       </Paper>

@@ -63,12 +63,11 @@ class LeftPane extends React.Component {
     // console.log(railroads, railroad);
 
     var engines = this.getLocomotivesByRailroads(locomotives, railroads);
-    console.log("left pane:", locomotives, engines);
+    // console.log("left pane:", classes, locomotives, engines);
 
     return (
       <Paper styles={styles.Paper}>
         {engines.sort().map(([group, locomotives]) => {
-          // {railroads.sort().map(([group, locomotives]) => {
           const mRailroad = this.matchRailroad(railroads, group, railroad);
 
           if (!railroad || mRailroad) {
@@ -83,7 +82,9 @@ class LeftPane extends React.Component {
                 <List component="ul">
                   {locomotives.map(({ id, title }) => (
                     <ListItem button key={id} onClick={() => onSelect(id)}>
-                      <ListItemText primary={title} />
+                      <ListItemText>
+                        <Typography variant="subtitle1">{title}</Typography>
+                      </ListItemText>
                     </ListItem>
                   ))}
                 </List>
