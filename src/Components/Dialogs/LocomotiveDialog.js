@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
+import withMobileDialog from "@material-ui/core/withMobileDialog";
+import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 
 import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -16,9 +19,6 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
-
-import withMobileDialog from "@material-ui/core/withMobileDialog";
-import { withStyles } from "@material-ui/core/styles";
 
 import LocomotiveForm from "./LocomotiveForm";
 
