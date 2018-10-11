@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, createMuiTheme } from "@material-ui/core/styles";
 
 import Header from "./Layouts/HeaderPane";
 import CentralPane from "./Layouts/CentralPane";
@@ -9,25 +9,38 @@ import { railroads, locomotives } from "../store.js";
 
 /**
  * This combined React and material-ui app is the first javascript
- * type that Lars Toomre has ever written.  As a result, there has
- * been much learning and progress has been slow at times as one
- * learns, for instance, the details of .find(), .map(), .reduce(),
- * and .filter() functions on array and objects.
+ * type app that Lars Toomre ever has written.  As a result, there
+ * has been much learning and progress has been slow at times, like
+ * with, for instance, the details of .find(), .map(), .reduce(),
+ * and .filter() functions on arrays and objects.
  *
- * Notes on known issues to address:
- * - Tie the RailroadDialog into the FooterPane somehow.
- * - Clean up the name display for appended railroads issue.
- * - Add railroads select element to locomotive dialog
+ * Short reminders for issues that still need to be addressed:
+ *
+ * - Let each leftPane RR be clickable with icon in front.
+ *
+ * - Add icon in front of each locomotive for a RR.
+ *
+ * - Code up the AppBar menu.
+ *
+ * - Create custom breakpoints for xs (0 -> 359 px)
+ *
+ * - Should styles of CentralPane flow down to leftPane?
+ *
+ * - Think about default icons for a RR and/or locomotive.
+ * - Tie the RailroadDialog into the FooterPane somehow.  Add a '+'
+ *   icon to the footer area like in the header area.
+ * - Modify footer area to have select RR component if # of RR is
+ *   greater than three.
  */
 
 let styles;
 
 class App extends React.Component {
   state = {
-    locomotive: "",
     locomotives,
-    railroad: "",
-    railroads
+    railroads,
+    selectLocomotive: "",
+    selectRailroad: ""
   };
 
   componentDidMount() {
@@ -48,54 +61,58 @@ class App extends React.Component {
     // setState(state);
   };
 
-  handleRailroadSelect = railroad => {
-    if (railroad === "") {
+  handleRailroadSelect = selectRailroad => {
+    if (selectRailroad === "") {
       // Handle the "ALL" case separately from other abbreviations.
       this.setState(prevState => ({
-        railroad: ""
+        selectRailroad: ""
       }));
     } else {
       this.setState(prevState => ({
-        railroad: prevState.railroads.find(function(ex) {
-          return ex.abbrev === railroad;
+        selectRailroad: prevState.railroads.find(function(ex) {
+          return ex.abbrev === selectRailroad;
         }).abbrev
       }));
     }
-    console.log("handleRailroadSelect: railroad ", railroad);
+    console.log("handleRailroadSelect: selectRailroad ", selectRailroad);
   };
 
-  handleLocomotiveSelect = locomotive => {
+  handleLocomotiveSelect = selectLocomotive => {
     this.setState(prevState => ({
-      locomotive: prevState.locomotives.find(function(ex) {
-        return ex.id === locomotive;
+      selectLocomotive: prevState.locomotives.find(function(ex) {
+        return ex.id === selectLocomotive;
       }).id
     }));
-    console.log("handleLocomotiveSelect: locomotive", locomotive);
+    console.log("handleLocomotiveSelect: selectLocomotive", selectLocomotive);
   };
 
-  handleLocomotiveCreate = locomotive =>
+  handleLocomotiveCreate = locomotive => {
     this.setState(({ locomotives }) => ({
       locomotives: [...locomotives, locomotive]
     }));
+  };
 
-  handleExerciseDelete = id =>
+  handleExerciseDelete = id => {
     this.setState(({ exercises, exercise, editMode }) => ({
       exercises: exercises.filter(ex => ex.id !== id),
       editMode: exercise.id === id ? false : editMode,
       exercise: exercise.id === id ? {} : exercise
     }));
+  };
 
-  handleExerciseSelectEdit = id =>
+  handleExerciseSelectEdit = id => {
     this.setState(({ exercises }) => ({
       exercise: exercises.find(ex => ex.id === id),
       editMode: true
     }));
+  };
 
-  handleExerciseEdit = exercise =>
+  handleExerciseEdit = exercise => {
     this.setState(({ exercises }) => ({
       exercises: [...exercises.filter(ex => ex.id !== exercise.id), exercise],
       exercise
     }));
+  };
 
   initRailroads(railroads, locomotives) {
     /**
@@ -131,31 +148,31 @@ class App extends React.Component {
   }
 
   render() {
-    const locomotive = this.state.locomotive;
-    const railroad = this.state.railroad;
+    const selectLocomotive = this.state.selectLocomotive;
+    const selectRailroad = this.state.selectRailroad;
     this.initRailroads(railroads, locomotives);
 
-    console.log("selectors:", locomotive, railroad);
+    console.log("selectors:", selectLocomotive, selectRailroad);
 
     return (
       <Fragment>
         <Header
-          locomotive={locomotive}
+          locomotive={selectLocomotive}
           locomotives={locomotives}
           onLocomotiveCreate={this.handleLocomotiveCreate}
           railroads={railroads}
         />
 
         <CentralPane
-          locomotive={locomotive}
           locomotives={locomotives}
-          railroad={railroad}
-          railroads={railroads}
           onSelect={this.handleLocomotiveSelect}
+          railroads={railroads}
+          selectLocomotive={selectLocomotive}
+          selectRailroad={selectRailroad}
         />
 
         <Footer
-          railroad={railroad}
+          railroad={selectRailroad}
           railroads={railroads}
           onselect={this.handleRailroadSelect}
         />
@@ -163,6 +180,22 @@ class App extends React.Component {
     );
   }
 }
+
+/**
+ * This is not yet working to set custom breakpoint widths.  Ideally,
+ * the first breakpoint will be at 360 pixwls.
+ */
+const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 360,
+      md: 600,
+      lg: 900,
+      xl: 1200
+    }
+  }
+});
 
 styles = theme => ({});
 

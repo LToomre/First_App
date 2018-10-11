@@ -9,17 +9,17 @@ let styles;
 
 class RightPane extends React.Component {
   render() {
-    const { classes, locomotive, locomotives, styles } = this.props;
+    const { classes, selectLocomotive, locomotives, styles } = this.props;
     // console.log("right pane:", locomotive, locomotives);
 
     var title = "",
       desc = "";
-    if (locomotive === "") {
+    if (selectLocomotive === "") {
       title = "Welcome!";
-      desc = "Please select a locomotive from the list on the left.";
+      desc = "Please select an item from the list on the left.";
     } else {
       var obj = locomotives.find(function(ex) {
-        return ex.id === locomotive;
+        return ex.id === selectLocomotive;
       });
       if (obj) {
         title = obj.title;
@@ -28,12 +28,15 @@ class RightPane extends React.Component {
       // console.log(obj, title, desc);
     }
 
+    // Turn on square corners for rightPane.
+    const square = true;
+
     return (
-      <Paper key={locomotive} style={styles.Paper}>
+      <Paper square key={selectLocomotive} className={classes.Paper}>
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
-        <Typography variant="subtitle1" style={{ marginTop: 20 }} gutterBottom>
+        <Typography variant="subtitle1" style={{ marginTop: 5 }} gutterBottom>
           {desc}
         </Typography>
       </Paper>
@@ -41,7 +44,12 @@ class RightPane extends React.Component {
   }
 }
 
-styles = theme => ({});
+styles = theme => ({
+  Paper: {
+    padding: 5,
+    overflowY: "auto"
+  }
+});
 
 RightPane.propTypes = {
   classes: PropTypes.object.isRequired

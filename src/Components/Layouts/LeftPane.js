@@ -11,6 +11,27 @@ import Paper from "@material-ui/core/Paper";
 let styles;
 
 class LeftPane extends React.Component {
+  state = {
+    windowHeight: 0,
+    windowWidth: 0
+  };
+
+  getInitialState() {
+    return { windowWidth: window.innerWidth };
+  }
+
+  handleResize(e) {
+    // this.state.windowWidth = window.innerWidth;
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleResize);
+  }
+
   matchRailroad(railroads, name, abbrev) {
     let ret = false;
     Object.keys(railroads).forEach(key => {
@@ -53,24 +74,37 @@ class LeftPane extends React.Component {
   render() {
     const {
       classes,
-      locomotive,
       locomotives,
-      railroad,
-      railroads,
       onSelect,
+      railroads,
+      selectLocomotive,
+      selectRailroad,
       styles
     } = this.props;
-    // console.log(railroads, railroad);
 
     var engines = this.getLocomotivesByRailroads(locomotives, railroads);
-    // console.log("left pane:", classes, locomotives, engines);
+
+    // Turn on square corners for leftPane component.
+    const square = true;
+
+    if (this.state.windowWidth < 1) {
+      this.getInitialState();
+    }
 
     return (
-      <Paper styles={styles.Paper}>
-        {engines.sort().map(([group, locomotives]) => {
-          const mRailroad = this.matchRailroad(railroads, group, railroad);
+      <Paper square className={classes.Paper}>
+        <div>
+          Viewport: {this.state.windowWidth}px x {this.state.windowHeight}px
+        </div>
 
-          if (!railroad || mRailroad) {
+        {engines.sort().map(([group, locomotives]) => {
+          const mRailroad = this.matchRailroad(
+            railroads,
+            group,
+            selectRailroad
+          );
+
+          if (!selectRailroad || mRailroad) {
             return (
               <Fragment key={group}>
                 <Typography
@@ -99,7 +133,12 @@ class LeftPane extends React.Component {
   }
 }
 
-styles = theme => ({});
+styles = theme => ({
+  Paper: {
+    padding: 5,
+    overflowY: "auto"
+  }
+});
 
 LeftPane.propTypes = {
   classes: PropTypes.object.isRequired

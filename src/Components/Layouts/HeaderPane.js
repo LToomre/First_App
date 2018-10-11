@@ -5,6 +5,8 @@ import Typography from "@material-ui/core/Typography";
 
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 
 import LocomotiveDialog from "../Dialogs/LocomotiveDialog";
@@ -15,32 +17,53 @@ class Header extends React.Component {
   render() {
     const {
       classes,
-      locomotive,
       locomotives,
       railroads,
-      onLocomotiveCreate
+      onLocomotiveCreate,
+      selectLocomotive
     } = this.props;
 
     return (
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h4" color="inherit" style={{ flex: 1 }}>
-            Steam Locomotives
-          </Typography>
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="Menu"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography className={classes.grow} variant="h5" color="inherit">
+              Steam Locomotives
+            </Typography>
 
-          <LocomotiveDialog
-            locomotive={locomotive}
-            locomotives={locomotives}
-            onLocomotiveCreate={onLocomotiveCreate}
-            railroads={railroads}
-          />
-        </Toolbar>
-      </AppBar>
+            <LocomotiveDialog
+              locomotive={selectLocomotive}
+              locomotives={locomotives}
+              onLocomotiveCreate={onLocomotiveCreate}
+              railroads={railroads}
+            />
+          </Toolbar>
+        </AppBar>
+      </div>
     );
   }
 }
 
-styles = theme => ({});
+styles = theme => ({
+  root: {
+    width: "100%"
+  },
+  grow: {
+    flexGrow: 1,
+    flex: 1
+  },
+  menuButton: {
+    marginLeft: -24,
+    marginRight: 5
+  }
+});
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired

@@ -15,33 +15,54 @@ class CentralPane extends React.Component {
     const {
       classes,
       editMode,
-      locomotive,
       locomotives,
       onDelete,
       onEdit,
       onSelect,
-      railroad,
-      railroads
+      railroads,
+      selectLocomotive,
+      selectRailroad
     } = this.props;
 
     // console.log("classes:", classes);
     // console.log("Central area:", locomotive, locomotives);
+    /**
+     * The material-ui breakpoints are documented at the following url:
+     * https://material-ui.com/layout/breakpoints/. Remember that
+     * xs is set at less than 600px, and sm is between 600px and less than 960px.
+     */
     return (
       <Grid container>
-        <Grid item sm>
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          md={3}
+          lg={2}
+          xl={2}
+          className={classes.section}
+        >
           <LeftPane
-            locomotive={locomotive}
             locomotives={locomotives}
-            railroad={railroad}
-            railroads={railroads}
             onSelect={onSelect}
+            railroads={railroads}
+            selectLocomotive={selectLocomotive}
+            selectRailroad={selectRailroad}
             styles={styles}
           />
         </Grid>
-        <Grid item sm>
+        <Grid
+          item
+          xs={12}
+          sm={8}
+          md={9}
+          lg={10}
+          xl={10}
+          className={classes.section}
+        >
           <RightPane
-            locomotive={locomotive}
             locomotives={locomotives}
+            selectLocomotive={selectLocomotive}
             styles={styles}
           />
         </Grid>
@@ -51,12 +72,10 @@ class CentralPane extends React.Component {
 }
 
 styles = theme => ({
-  Paper: {
-    padding: 20,
-    marginTop: 10,
-    marginBottom: 10,
-    height: 600,
-    overflowY: "auto"
+  section: {
+    height: "100%",
+    paddingTop: 0,
+    backgroundColor: "#fff"
   }
 });
 
