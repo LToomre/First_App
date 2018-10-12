@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 
 import LeftPane from "./LeftPane";
 import RightPane from "./RightPane";
+import Viewport from "./Viewport";
 
 let styles;
 
@@ -33,6 +34,8 @@ class CentralPane extends React.Component {
      */
     return (
       <Grid container>
+        <Viewport />
+
         <Grid
           item
           xs={12}

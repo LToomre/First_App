@@ -8,30 +8,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Paper from "@material-ui/core/Paper";
 
+import Viewport from "./Viewport";
+
 let styles;
 
 class LeftPane extends React.Component {
-  state = {
-    windowHeight: 0,
-    windowWidth: 0
-  };
-
-  getInitialState() {
-    return { windowWidth: window.innerWidth };
-  }
-
-  handleResize(e) {
-    // this.state.windowWidth = window.innerWidth;
-  }
-
-  componentDidMount() {
-    window.addEventListener("resize", this.handleResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.handleResize);
-  }
-
   matchRailroad(railroads, name, abbrev) {
     let ret = false;
     Object.keys(railroads).forEach(key => {
@@ -87,16 +68,8 @@ class LeftPane extends React.Component {
     // Turn on square corners for leftPane component.
     const square = true;
 
-    if (this.state.windowWidth < 1) {
-      this.getInitialState();
-    }
-
     return (
       <Paper square className={classes.Paper}>
-        <div>
-          Viewport: {this.state.windowWidth}px x {this.state.windowHeight}px
-        </div>
-
         {engines.sort().map(([group, locomotives]) => {
           const mRailroad = this.matchRailroad(
             railroads,
