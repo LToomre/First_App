@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -33,43 +33,45 @@ class CentralPane extends React.Component {
      * xs is set at less than 600px, and sm is between 600px and less than 960px.
      */
     return (
-      <Grid container>
+      <Fragment>
         <Viewport />
 
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          md={3}
-          lg={2}
-          xl={2}
-          className={classes.section}
-        >
-          <LeftPane
-            locomotives={locomotives}
-            onSelect={onSelect}
-            railroads={railroads}
-            selectLocomotive={selectLocomotive}
-            selectRailroad={selectRailroad}
-            styles={styles}
-          />
+        <Grid container>
+          <Grid
+            item
+            xs={12}
+            sm={4}
+            md={3}
+            lg={2}
+            xl={2}
+            className={classes.section}
+          >
+            <LeftPane
+              locomotives={locomotives}
+              onSelect={onSelect}
+              railroads={railroads}
+              selectLocomotive={selectLocomotive}
+              selectRailroad={selectRailroad}
+              styles={styles}
+            />
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            md={9}
+            lg={10}
+            xl={10}
+            className={classes.section}
+          >
+            <RightPane
+              locomotives={locomotives}
+              selectLocomotive={selectLocomotive}
+              styles={styles}
+            />
+          </Grid>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={8}
-          md={9}
-          lg={10}
-          xl={10}
-          className={classes.section}
-        >
-          <RightPane
-            locomotives={locomotives}
-            selectLocomotive={selectLocomotive}
-            styles={styles}
-          />
-        </Grid>
-      </Grid>
+      </Fragment>
     );
   }
 }

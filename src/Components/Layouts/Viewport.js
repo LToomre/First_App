@@ -14,7 +14,7 @@ let styles;
 class Viewport extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { width: 0, height: 0, breakpoint: "" };
+    this.state = { width: 0, height: 0, bp: "", bp_width: -1 };
     this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
   }
 
@@ -25,14 +25,6 @@ class Viewport extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateWindowDimensions);
-  }
-
-  updateWindowDimensions() {
-    const w = window.innerWidth;
-    const bk = this.props.theme.breakpoints.values;
-    const bp = this.getBreakpoints();
-    console.log(w, bp);
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   getBreakpoints() {
@@ -48,15 +40,51 @@ class Viewport extends React.Component {
     return bp;
   }
 
+  updateWindowDimensions() {
+    const w = window.innerWidth;
+    const bp = this.getBreakpointCode(w);
+    const bp_width = this.getBreakpointWidth(w);
+    this.setState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+      bp: bp,
+      bp_width: bp_width
+    });
+  }
+
+  getBreakpointCode(width) {
+    var code = "xy";
+    const breaks = this.getBreakpoints();
+    const x = Object.entries(breaks).forEach(([key, value]) => {
+      if (code === "xy" && width < value) {
+        code = key;
+        // console.log(`key = ${key} value = ${value}`);
+      }
+    });
+    // console.log("Breakpoint code: ", width, code, breaks);
+    return code;
+  }
+
+  getBreakpointWidth(width) {
+    var bp_width = -1;
+    const breaks = this.getBreakpoints();
+    const x = Object.entries(breaks).forEach(([key, value]) => {
+      if (bp_width < 0 && width < value) {
+        bp_width = value + 1;
+        // console.log(`key = ${key} value = ${value}`);
+      }
+    });
+    // console.log("Breakpoint width:", width, bp_width, breaks);
+    return bp_width;
+  }
+
   render() {
     const { classes, theme } = this.props;
-    const { width, height, breakpoint } = this.state;
-    const bk_width = 999;
+    const { width, height, bp, bp_width } = this.state;
 
     return (
       <Fragment>
-        Viewport: {width}px x {height}px; breakpoint: {breakpoint} (until{" "}
-        {bk_width}px)
+        Responsive '{bp}': [{width}x{height}] (until {bp_width}px width)
       </Fragment>
     );
   }
