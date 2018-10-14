@@ -25,13 +25,28 @@ class CentralPane extends React.Component {
       selectRailroad
     } = this.props;
 
-    // console.log("classes:", classes);
-    // console.log("Central area:", locomotive, locomotives);
-    /**
-     * The material-ui breakpoints are documented at the following url:
-     * https://material-ui.com/layout/breakpoints/. Remember that
-     * xs is set at less than 600px, and sm is between 600px and less than 960px.
-     */
+    //  Display message if no specific choice(s) made,
+    if (!selectLocomotive && !selectRailroad) {
+      return (
+        <Fragment>
+          <Viewport />
+          <Typography variant="subtitle1">
+            At start-up with no selections yet made.
+          </Typography>
+          <br />
+        </Fragment>
+      );
+    } else if (selectLocomotive && !selectRailroad) {
+      return (
+        <Fragment>
+          <Viewport />
+          <Typography variant="subtitle1">
+            Here are details for {selectLocomotive}
+          </Typography>
+        </Fragment>
+      );
+    }
+
     return (
       <Fragment>
         <Viewport />
@@ -40,9 +55,9 @@ class CentralPane extends React.Component {
           <Grid
             item
             xs={12}
-            sm={4}
-            md={3}
-            lg={2}
+            sm={5}
+            md={4}
+            lg={3}
             xl={2}
             className={classes.section}
           >
@@ -58,9 +73,9 @@ class CentralPane extends React.Component {
           <Grid
             item
             xs={12}
-            sm={8}
-            md={9}
-            lg={10}
+            sm={7}
+            md={8}
+            lg={9}
             xl={10}
             className={classes.section}
           >

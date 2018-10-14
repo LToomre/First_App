@@ -2,10 +2,10 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import { withStyles, createMuiTheme } from "@material-ui/core/styles";
 
-import Header from "./Layouts/HeaderPane";
-import CentralPane from "./Layouts/CentralPane";
-import Footer from "./Layouts/FooterPane";
-import { railroads, locomotives } from "../store.js";
+import Header from "./layouts/HeaderPane";
+import CentralPane from "./layouts/CentralPane";
+import Footer from "./layouts/FooterPane";
+import { railroads, locomotives } from "../assets/data/store.js";
 
 /**
  * This combined React and material-ui app is the first javascript
@@ -22,9 +22,9 @@ import { railroads, locomotives } from "../store.js";
  *
  * - Code up the AppBar menu.
  *
- * - Create custom breakpoints for xs (0 -> 359 px)
+ * - Create custom breakpoints for xxs (0 -> 359 px)
  *
- * - Should styles of CentralPane flow down to leftPane?
+ * - Add logic for determining device orientation.
  *
  * - Think about default icons for a RR and/or locomotive.
  * - Tie the RailroadDialog into the FooterPane somehow.  Add a '+'

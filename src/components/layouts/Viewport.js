@@ -82,6 +82,25 @@ class Viewport extends React.Component {
     const { classes, theme } = this.props;
     const { width, height, bp, bp_width } = this.state;
 
+    var orientation =
+      screen.msOrientation ||
+      (screen.orientation || screen.mozOrientation || {}).type;
+
+    if (orientation === "landscape-primary") {
+      // console.log("In landscape orientation");
+    } else if (orientation === "landscape-secondary") {
+      console.log("Mmmh... the screen is upside down!");
+    } else if (
+      orientation === "portrait-secondary" ||
+      orientation === "portrait-primary"
+    ) {
+      console.log(
+        "Mmmh... rotate device from portrait to landscape orientation"
+      );
+    } else if (orientation === undefined) {
+      console.log("The orientation API isn't supported in this browser!!");
+    }
+
     return (
       <Fragment>
         Responsive '{bp}': [{width}x{height}] (until {bp_width}px width)

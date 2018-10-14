@@ -9,7 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import LocomotiveDialog from "../Dialogs/LocomotiveDialog";
+import LocomotiveDialog from "../dialogs/LocomotiveDialog";
 
 let styles;
 
